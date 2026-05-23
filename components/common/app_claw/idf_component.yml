@@ -54,6 +54,11 @@ dependencies:
       - if: $CONFIG{APP_CLAW_CAP_SESSION_MGR} == True
     path: ../../claw_capabilities/cap_session_mgr
 
+  cap_xiaozhi:
+    rules:
+      - if: $CONFIG{APP_CLAW_CAP_XIAOZHI} == True
+    path: ../../claw_capabilities/cap_xiaozhi
+
   cap_skill_mgr:
     rules:
       - if: $CONFIG{APP_CLAW_CAP_SKILL_MGR} == True

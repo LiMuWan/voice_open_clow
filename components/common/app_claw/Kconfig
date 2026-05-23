@@ -156,6 +156,19 @@ menu "App Claw Config"
                 Enable the session manager capability and keep app_claw's direct dependency
                 on cap_session_mgr.
 
+        config APP_CLAW_CAP_XIAOZHI
+            bool "Enable Xiaozhi platform capability"
+            depends on !APP_CLAW_CAP_MCP_CLIENT && !APP_CLAW_CAP_MCP_SERVER
+            default n
+            help
+                Enable the Xiaozhi platform capability and keep app_claw's direct
+                dependency on cap_xiaozhi. This exposes Xiaozhi chat lifecycle,
+                audio-channel control, wake-word reporting, and Xiaozhi protocol
+                events through the ESP-Claw capability system.
+                esp_xiaozhi 0.1.0 currently depends on mcp-c-sdk 1.x, while
+                ESP-Claw's MCP client/server capabilities depend on mcp-c-sdk 2.x,
+                so these capabilities are mutually exclusive for now.
+
     endmenu
 
     menu "App Claw Lua Modules"

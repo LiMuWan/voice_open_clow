@@ -1,0 +1,3 @@
+dependencies:
+  espressif/esp_xiaozhi: "^0.1.0"
+  espressif/mcp-c-sdk: "^1.0.0"

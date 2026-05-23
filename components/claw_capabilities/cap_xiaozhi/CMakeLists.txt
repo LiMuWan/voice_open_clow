@@ -1,0 +1,15 @@
+idf_component_register(
+    SRCS
+        "src/cap_xiaozhi.c"
+    INCLUDE_DIRS
+        "include"
+    REQUIRES
+        claw_cap
+        claw_event_router
+        esp_event
+        espressif__mcp-c-sdk
+        espressif__esp_xiaozhi
+        esp_timer
+        freertos
+        json
+)

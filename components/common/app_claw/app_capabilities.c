@@ -63,6 +63,9 @@
 #if CONFIG_APP_CLAW_CAP_WEB_SEARCH
 #include "cap_web_search.h"
 #endif
+#if CONFIG_APP_CLAW_CAP_XIAOZHI
+#include "cap_xiaozhi.h"
+#endif
 #include "claw_cap.h"
 #include "claw_memory.h"
 #include "esp_check.h"
@@ -545,6 +548,16 @@ static esp_err_t app_cap_register_session_mgr(const app_claw_config_t *config,
 }
 #endif
 
+#if CONFIG_APP_CLAW_CAP_XIAOZHI
+static esp_err_t app_cap_register_xiaozhi(const app_claw_config_t *config,
+                                          const app_claw_storage_paths_t *paths)
+{
+    (void)config;
+    (void)paths;
+    return cap_xiaozhi_register_group();
+}
+#endif
+
 static const app_capability_group_entry_t s_capability_group_entries[] = {
 #if CONFIG_APP_CLAW_CAP_IM_QQ
     { "cap_im_qq", "QQ", "Register QQ cap", false, app_cap_prepare_im_qq, app_cap_register_im_qq },
@@ -599,6 +612,9 @@ static const app_capability_group_entry_t s_capability_group_entries[] = {
 #endif
 #if CONFIG_APP_CLAW_CAP_SESSION_MGR
     { "cap_session_mgr", "Session Manager", "Register session manager cap", false, NULL, app_cap_register_session_mgr },
+#endif
+#if CONFIG_APP_CLAW_CAP_XIAOZHI
+    { "cap_xiaozhi", "Xiaozhi", "Register Xiaozhi platform cap", false, NULL, app_cap_register_xiaozhi },
 #endif
 };
 
@@ -656,6 +672,9 @@ static const app_capability_group_info_t s_capability_group_infos[] = {
 #endif
 #if CONFIG_APP_CLAW_CAP_SESSION_MGR
     { "cap_session_mgr", "Session Manager", false },
+#endif
+#if CONFIG_APP_CLAW_CAP_XIAOZHI
+    { "cap_xiaozhi", "Xiaozhi", false },
 #endif
 };
 
