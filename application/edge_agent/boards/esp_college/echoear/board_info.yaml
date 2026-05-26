@@ -1,0 +1,4 @@
+board: echoear
+chip: esp32s3
+description: "EchoEar ESP32-S3 AI audio board"
+manufacturer: "ESP-College"

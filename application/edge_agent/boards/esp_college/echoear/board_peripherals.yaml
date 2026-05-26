@@ -1,0 +1,93 @@
+version: 1.0.0
+# EchoEar board peripheral wiring.
+# Source: D:/workspace/xbell_esp32/main/boards/echoear/config.h
+peripherals:
+  - name: i2c_master
+    type: i2c
+    role: master
+    config:
+      port: 0
+      pins:
+        sda: 2
+        scl: 1
+
+  - name: i2s_audio_out
+    type: i2s
+    role: master
+    format: std-out
+    config: &i2s_audio_config
+      port: 0
+      sample_rate_hz: 16000
+      mclk_multiple: 256
+      data_bit_width: 32
+      slot_bit_width: I2S_SLOT_BIT_WIDTH_AUTO
+      slot_mode: I2S_SLOT_MODE_STEREO
+      slot_mask: I2S_STD_SLOT_BOTH
+      ws_width: 32
+      pins:
+        mclk: 42
+        bclk: 40
+        ws: 39
+        dout: 41
+        din: 15
+
+  - name: i2s_audio_in
+    type: i2s
+    role: master
+    format: std-in
+    config: *i2s_audio_config
+
+  - name: spi_display
+    type: spi
+    role: master
+    config:
+      spi_bus_config:
+        spi_port: SPI2_HOST
+        data0_io_num: 46
+        data1_io_num: 13
+        data2_io_num: 11
+        data3_io_num: 12
+        sclk_io_num: 18
+        max_transfer_sz: 14400
+
+  - name: ledc_backlight
+    type: ledc
+    role: none
+    config:
+      gpio_num: 44
+      freq_hz: 2000
+      duty: 100
+      duty_resolution: LEDC_TIMER_10_BIT
+      output_invert: false
+
+  - name: gpio_power_lcd_sdcard
+    type: gpio
+    role: io
+    config:
+      pin: 9
+      mode: GPIO_MODE_OUTPUT
+      default_level: 1
+
+  - name: gpio_power_audio
+    type: gpio
+    role: io
+    config:
+      pin: 48
+      mode: GPIO_MODE_OUTPUT
+      default_level: 1
+
+  - name: gpio_pa_control
+    type: gpio
+    role: io
+    config:
+      pin: 4
+      mode: GPIO_MODE_OUTPUT
+      default_level: 0
+
+  - name: gpio_led_g
+    type: gpio
+    role: io
+    config:
+      pin: 43
+      mode: GPIO_MODE_OUTPUT
+      default_level: 1
